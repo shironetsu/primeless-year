@@ -1,0 +1,26 @@
+[package]
+name = "primeless_year"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num = "0.4.0"
+rug = "1.14.0"
+
+[dev-dependencies]
+rstest = "0.12.0"
+chrono = "0.4.19"
+
+[[bin]]
+name = "factorial_1"
+path = "src/bin/facrorial_1.rs"
+
+[[bin]]
+name = "factor"
+path = "src/bin/factor.rs"
+
+[[bin]]
+name = "years"
+path = "src/bin/years.rs"
