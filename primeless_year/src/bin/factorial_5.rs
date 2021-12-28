@@ -35,7 +35,7 @@ fn main() {
         println!("{} * 10^{}", sig, exp);
         println!("{}", a.get_prime_mmdds().len());
 
-        if a.get_prime_mmdds().len() == 0 {
+        if a.is_probably_primeless_year() == IsPrimelessYear::Yes {
             break a;
         }
     };
