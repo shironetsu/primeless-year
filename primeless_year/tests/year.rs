@@ -1,5 +1,5 @@
 use chrono::prelude::*;
-use primeless_year::*;
+use primeless_year::year::*;
 use rstest::*;
 use rug::{Complete, Integer};
 
@@ -26,7 +26,7 @@ fn leap_year_test_rug_integer(#[case] input: &str, #[case] expected: bool) {
 #[case(GregorianCalender::LeapYear, true)]
 #[case(GregorianCalender::CommonYear, false)]
 fn contains_leap_day(#[case] input: GregorianCalender, #[case] expected: bool) {
-    let mds = input.get_mds();
+    let mds = input.get_mmdds();
     assert_eq!(mds.contains(&229), expected);
 }
 
@@ -34,8 +34,7 @@ fn contains_leap_day(#[case] input: GregorianCalender, #[case] expected: bool) {
 #[case(GregorianCalender::LeapYear)]
 #[case(GregorianCalender::CommonYear)]
 fn calender_is_ok(#[case] input: GregorianCalender) {
-    let mds = input.get_mds();
-
+    let mmdds = input.get_mmdds();
     let proxy_year = if input.is_leap_year() { 2020 } else { 2021 };
     let mds_from_chrono = NaiveDate::from_ymd(proxy_year, 1, 1)
         .iter_days()
@@ -43,5 +42,5 @@ fn calender_is_ok(#[case] input: GregorianCalender) {
         .map(|d| d.format("%m%d").to_string().parse().unwrap())
         .collect::<Vec<i32>>();
 
-    assert_eq!(mds, mds_from_chrono);
+    assert_eq!(mmdds, mds_from_chrono);
 }

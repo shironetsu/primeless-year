@@ -1,8 +1,8 @@
-use primeless_year::*;
+use primeless_year::year::*;
 use std::fmt::Write;
 
 fn main() {
-    for &d in GregorianCalender::LeapYear.get_mds() {
+    for &d in GregorianCalender::LeapYear.get_mmdds() {
         if d % 2 == 0 || d % 5 == 0 {
             continue;
         }
@@ -23,7 +23,7 @@ fn main() {
             factors.push(d);
         }
         write!(&mut s, "{:?}", factors);
-        if factors.len() > 1 && !factors.contains(&3){
+        if factors.len() > 1 && !factors.contains(&3) {
             println!("{}", s);
         }
     }
