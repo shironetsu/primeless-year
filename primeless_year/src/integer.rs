@@ -23,3 +23,11 @@ impl ToExp10 for Integer {
         }
     }
 }
+
+#[macro_export]
+macro_rules! format_exp10 {
+    ($i:expr) => {{
+        let (sig, exp) = $i.to_exp10();
+        format!("{} * 10^{}", sig, exp)
+    }};
+}

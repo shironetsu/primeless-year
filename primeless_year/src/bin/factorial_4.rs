@@ -1,9 +1,10 @@
-use primeless_year::integer::ToExp10;
-use primeless_year::year::{GetMmdds, GregorianCalender};
+use primeless_year::integer::*;
+use primeless_year::year::*;
+use primeless_year::*;
 use rug::{Complete, Integer};
 
 fn main() {
-    let a = GregorianCalender::CommonYear
+    let y = GregorianCalender::CommonYear
         .get_mmdds()
         .iter()
         .filter(|&d| d % 2 != 0 && d % 5 != 0)
@@ -16,6 +17,5 @@ fn main() {
                 acc
             }
         });
-    let (sig, exp) = a.to_exp10();
-    println!("{} * 10^{}", sig, exp);
+    println!("{}", format_exp10!(y));
 }
